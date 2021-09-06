@@ -16,7 +16,7 @@
     "onLanguage:scss",
     "onLanguage:sass"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": []
   },

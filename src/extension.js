@@ -1,7 +1,15 @@
 const vscode = require("vscode");
+const sortCssBlock = require("./functions/sort-css-block");
 
 function formatter(document) {
-  return [new vscode.TextEdit(initDocumentRange(document), document.getText())];
+  const languageId = document.languageId;
+    let content = document.getText();
+    const range = initDocumentRange(document);
+    const result= [];
+    content = sortCssBlock(content);
+    console.log(content);
+    result.push(new vscode.TextEdit(range, content));
+    return result;
 }
 /**
  * 创建文档range对象
