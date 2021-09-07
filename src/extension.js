@@ -3,13 +3,12 @@ const sortCssBlock = require("./functions/sort-css-block");
 
 function formatter(document) {
   const languageId = document.languageId;
-    let content = document.getText();
-    const range = initDocumentRange(document);
-    const result= [];
-    content = sortCssBlock(content);
-    console.log(content);
-    result.push(new vscode.TextEdit(range, content));
-    return result;
+  let content = document.getText();
+  const range = initDocumentRange(document);
+  const result = [];
+  content = sortCssBlock(content);
+  result.push(new vscode.TextEdit(range, content));
+  return result;
 }
 /**
  * 创建文档range对象
