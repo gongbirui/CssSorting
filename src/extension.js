@@ -1,3 +1,4 @@
+const prettier = require("prettier-eslint");
 const vscode = require("vscode");
 const sortCssBlock = require("./functions/sort-css-block");
 
@@ -6,7 +7,12 @@ function formatter(document) {
   let content = document.getText();
   const range = initDocumentRange(document);
   const result = [];
-  content = sortCssBlock(content);
+  try {
+    content = sortCssBlock(content);
+  } catch (error) {
+    throw error;
+  }
+  content = prettier({ text: content, filePath: document.fileName });
   result.push(new vscode.TextEdit(range, content));
   return result;
 }

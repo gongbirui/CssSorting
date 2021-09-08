@@ -27,5 +27,17 @@ let a = ({
     };
   });
 };
-
-console.log(a());
+let rules = [
+  ...special,
+  ...positioning,
+  ...boxModel({ border: false }),
+  ...typography,
+  ...visual({ border: !false }),
+  ...animation,
+  ...misc,
+];
+let ruleObj = {}
+rules = rules.map((ele,index)=>{
+  ruleObj[ele] = index;
+})
+console.log(JSON.stringify(ruleObj));
