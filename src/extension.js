@@ -4,6 +4,7 @@ const sortCssBlock = require("./functions/sort-css-block");
 
 function formatter(document) {
   const languageId = document.languageId;
+  console.log(document.fileName ,1);
   let content = document.getText();
   const range = initDocumentRange(document);
   const result = [];

@@ -262,11 +262,11 @@ module.exports = function sortProperties(properties, defaultIndentation = 4) {
   matches.sort((a, b) => {
     let aProp = (/([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm).exec(a)[1]
     let bProp = (/([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm).exec(b)[1]
-    if (aProp > bProp) {
+    if (rules[aProp] < rules[bProp]) {
       // 按某种排序标准进行比较, a 小于 b
       return -1;
     }
-    if (aProp < bProp) {
+    if (rules[aProp] > rules[bProp]) {
       return 1;
     }
     // a must be equal to b
@@ -275,8 +275,6 @@ module.exports = function sortProperties(properties, defaultIndentation = 4) {
   // Erase all properties, retain our #key markers at end of line
   matches.forEach((match) => (properties = properties.replace(match, "")));
 
-  // Erase double lines from
-  properties = properties.replaceAll(/\n\s+$/gm, "");
 
   // Newly created CSS property block
   const block =
