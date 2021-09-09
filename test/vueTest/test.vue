@@ -1,10 +1,9 @@
 <template>
   <div class="main-home">
-    <style>
-      12321
-    </style>
+    <a href="" ></a>
   </div>
 </template>
+
 <script lang="ts" ads>
 export default {
   name: "Home",
@@ -15,23 +14,26 @@ export default {
   },
 };
 </script>
+
 <style lang="less" scoped>
 .main-home {
-  width: 100%;
   position: relative;
-  background-size: 100% 200px;
-  background: url("../assets/img/bg.jpeg") no-repeat;
   left: 100px;
+  width: 100%;
+  background: url("../assets/img/bg.jpeg") no-repeat;
+  background-size: 100% 200px;
+
   .home-body {
     padding: 100px 10% 0;
   }
 }
 </style>
+
 <style lang="scss" scoped>
-.a{
-  color:red;
-  .b{
-    font-family: 'Courier New', Courier, monospace;
+.a {
+  color: red;
+  .b {
+    font-family: "Courier New", Courier, monospace;
   }
 }
 </style>

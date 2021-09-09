@@ -1,3 +1,4 @@
+
 const rules = {
   composes: 0,
   "@import": 1,
@@ -273,7 +274,11 @@ module.exports = function sortProperties(properties, defaultIndentation = 4) {
     return 0;
   });
   // Erase all properties, retain our #key markers at end of line
-  matches.forEach((match) => (properties = properties.replace(match, "")));
+  matches.forEach((match) => {
+    console.log(match);
+    console.log('--------');
+    properties = properties.replace(match, "")
+  });
 
 
   // Newly created CSS property block
