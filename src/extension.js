@@ -26,7 +26,7 @@ function formatter(document) {
   } catch (error) {
     throw error;
   }
-  // content = prettier({ text: content, filePath: document.fileName });
+  content = prettier({ text: content, filePath: document.fileName });
   return [new vscode.TextEdit(range, content)];
 }
 const formattingProvider = {

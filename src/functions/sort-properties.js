@@ -1,4 +1,4 @@
-
+const cssParser = require('css')
 const rules = {
   composes: 0,
   "@import": 1,
@@ -236,33 +236,39 @@ const rules = {
   stroke: 233,
 };
 
-/**
- * Identify, split, and sort CSS properties from within a string. Our
- * parameters are key/values split by a colon, the delimited by either
- * a semi-colon, line break, or closing bracket.
- *
- * @todo We shouldn't return 'any'. We should create an interface.
- * @todo Improve our initial clean-up lines.
- *
- * @return any
- */
 module.exports = function sortProperties(properties, defaultIndentation = 4) {
+  let tmp = cssParser.parse(`.a{${properties}}`)?.stylesheet?.rules?.[0]
+  // @ts-ignore
+  console.log(tmp.declarations);
+  
+  // 替换掉所有的换行
   properties = properties.replace(/^(\n)+/g, "");
 
-  // Convert tabs to spaces
+  // 把所有的tab缩进方式 替换为空格
   properties = properties.replace(/\t/g, " ".repeat(defaultIndentation));
 
   // Inherit indentation from the first line
   const indentation = (properties.match(/^\s+/g) || [""])[0].length;
   const tab = " ".repeat(indentation);
-
   // Extract properties from CSS string and sort them
   const matches = [
     ...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm),
   ].map((x) => x[0].trim());
+  debugger
   matches.sort((a, b) => {
-    let aProp = (/([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm).exec(a)[1]
-    let bProp = (/([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm).exec(b)[1]
+    let aProp =
+      /-(moz|webkit|ms|o)-([$_a-zA-Z\-]+)\s*:[^;}]+([;\n}])/gm.exec(a)?.[2] ||
+      /([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm.exec(a)?.[1];
+    let bProp =
+      /-(moz|webkit|ms|o)-([$_a-zA-Z\-]+)\s*:[^;}]+([;\n}])/gm.exec(b)?.[2] ||
+      /([$_a-zA-Z\-]+)\s{0,}:[^;}]+([;\n}])/gm.exec(b)?.[1];
+
+    if (!rules[aProp]) {
+      return 1;
+    }
+    if (!rules[bProp]) {
+      return -1;
+    }
     if (rules[aProp] < rules[bProp]) {
       // 按某种排序标准进行比较, a 小于 b
       return -1;
@@ -275,17 +281,9 @@ module.exports = function sortProperties(properties, defaultIndentation = 4) {
   });
   // Erase all properties, retain our #key markers at end of line
   matches.forEach((match) => {
-    console.log(match);
-    console.log('--------');
-    properties = properties.replace(match, "")
+    properties = properties.replace(match, "");
   });
-
-
-  // Newly created CSS property block
-  const block =
-    tab +
-    matches.join("\n" + tab).trim() +
-    (properties ? "\n" + properties : "");
+  const block = matches.join("\n" + tab).trim();
 
   // Return block and indentation information
   return { block, indentation, tab };
