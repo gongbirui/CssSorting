@@ -1,4 +1,4 @@
-const cssParser = require('css')
+
 const rules = {
   composes: 0,
   "@import": 1,
@@ -237,9 +237,6 @@ const rules = {
 };
 
 module.exports = function sortProperties(properties, defaultIndentation = 4) {
-  let tmp = cssParser.parse(`.a{${properties}}`)?.stylesheet?.rules?.[0]
-  // @ts-ignore
-  console.log(tmp.declarations);
   
   // 替换掉所有的换行
   properties = properties.replace(/^(\n)+/g, "");
