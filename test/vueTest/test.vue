@@ -1,6 +1,6 @@
 <template>
   <div class="main-home">
-    <a href="" ></a>
+    <a href=""></a>
   </div>
 </template>
 
@@ -15,14 +15,14 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .main-home {
   position: relative;
   left: 100px;
+  box-sizing: border-box;
   width: 100%;
   background: url("../assets/img/bg.jpeg") no-repeat;
   background-size: 100% 200px;
-
   .home-body {
     padding: 100px 10% 0;
   }

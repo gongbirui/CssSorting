@@ -7,10 +7,11 @@ class Position {
   }
 }
 class Parser {
-  constructor(css) {
+  constructor(css, plugin = {}) {
     this.css = css;
     this.lineno = 1;
     this.column = 1;
+    this.plugin = plugin;
   }
   stylesheet() {
     var ruleList = this.rules();
@@ -108,9 +109,10 @@ class Parser {
   }
   // 报错
   error(msg) {
-    var err = new Error(
-      "before line:" + this.lineno + ",column:" + this.column + "  " + msg
-    );
+    var errMsg =
+      "before line:" + this.lineno + ",column:" + this.column + "  " + msg;
+    var err = new Error(errMsg);
+    this.plugin?.console?.err(errMsg);
     throw err;
   }
   atrule() {
@@ -129,7 +131,7 @@ class Parser {
       this.atfontface() ||
       this.atextend() ||
       this.atinclude() ||
-      this.atmixin() || 
+      this.atmixin() ||
       undefined
     );
   }
@@ -471,4 +473,4 @@ class Parser {
   }
 }
 
-module.exports = Parser
+module.exports = Parser;

@@ -1,0 +1,57 @@
+@mixin link-colors($normal, $hover, $visited) {
+  color: $normal;
+  &:hover {
+    color: $hover;
+  }
+  &:visited {
+    color: $visited;
+  }
+}
+.t {
+  -webkit-box-sizing: border-box;
+}
+.a {
+  position: absolute;
+  left: 0;
+  display: block;
+  align-self: center;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  color: #fff;
+  font-family: element-icons !important;
+  @at-root {
+    .child1 {
+      width: 300px;
+    }
+    .child2 {
+      width: 400px;
+    }
+  }
+  &.a {
+    @include link-colors(blue, red, green);
+  }
+  .b {
+    min-width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    border-color: transparent;
+  }
+  @media screen {
+    display: block;
+    .a {
+      color: red;
+    }
+  }
+  @keyframes test {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.9;
+    }
+  }
+}

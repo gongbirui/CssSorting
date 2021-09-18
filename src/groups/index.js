@@ -7,28 +7,8 @@ const typography = require("./typography");
 const visual = require("./visual");
 const animation = require("./animation");
 const misc = require("./misc");
-let a = ({
-  "border-in-box-model": borderInBoxModel = false,
-  "empty-line-between-groups": emptyLineBetweenGroups = false,
-} = {}) => {
-  return [
-    ["Special", special],
-    ["Positioning", positioning],
-    ["Box Model", boxModel({ border: borderInBoxModel })],
-    ["Typography", typography],
-    ["Visual", visual({ border: !borderInBoxModel })],
-    ["Animation", animation],
-    ["Misc", misc],
-  ].map(([groupName, properties]) => {
-    return {
-      emptyLineBefore: emptyLineBetweenGroups ? "always" : "never",
-      properties,
-      groupName,
-    };
-  });
-};
+
 let rules = [
-  ...special,
   ...positioning,
   ...boxModel({ border: false }),
   ...typography,
@@ -36,8 +16,47 @@ let rules = [
   ...animation,
   ...misc,
 ];
-let ruleObj = {}
-rules = rules.map((ele,index)=>{
-  ruleObj[ele] = index;
-})
+const cssTypePrev = [
+  "charset",
+  "host",
+  "import",
+  "font-face",
+  "namespace",
+  "page",
+  "document",
+  "comment",
+  "mixin",
+  "extend",
+];
+const cssTypeNext = [
+  "rule",
+  "include",
+  "custom-media",
+  "media",
+  "supports",
+  "keyframes",
+  "keyframe",
+];
+
+let cssTypePrevObj = {};
+cssTypePrev.map((ele, index) => {
+  cssTypePrevObj[ele] = index;
+});
+
+let ruleObj = {};
+rules.map((ele, index) => {
+  ruleObj[ele] = index + cssTypePrev.length;
+});
+
+let cssTypeNextObj = {};
+cssTypeNext.map((ele, index) => {
+  cssTypeNextObj[ele] = index + rules.length + cssTypePrev.length;
+});
+let cssTypeObj = Object.assign(cssTypePrevObj, cssTypeNextObj);
+console.log("-----------cssTypeObj------start-----------------");
+console.log(JSON.stringify(cssTypeObj));
+console.log("-----------cssTypeObj--------end-----------------");
+console.log("-------------------------------------------------");
+console.log("-----------ruleObj---------start-----------------");
 console.log(JSON.stringify(ruleObj));
+console.log("-----------ruleObj-----------end-----------------");
