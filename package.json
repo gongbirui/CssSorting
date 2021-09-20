@@ -1,8 +1,10 @@
 {
-  "name": "cssAttrSorting",
-  "displayName": "cssAttrSorting",
-  "description": "",
-  "version": "0.0.1",
+  "name": "css-sorting",
+  "displayName": "CssSorting",
+  "description": "VS Code CssSorting代码插件，用于按指定顺序对CSS规则内容进行排序\nVS Code plugin to sort CSS rules content with specified order.",
+  "version": "0.0.2",
+  "publisher": "CssSorting",
+  "icon": "CssSorting.ico",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -12,7 +14,6 @@
   "activationEvents": [
     "onCommand:extension.formate",
     "onLanguage:css",
-    "onLanguage:less",
     "onLanguage:scss",
     "onLanguage:sass",
     "onLanguage:vue"

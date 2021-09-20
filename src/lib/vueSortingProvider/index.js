@@ -27,10 +27,25 @@ function vueFormatter(document) {
     vueStr += createVueBlock(sfc.template, "template");
     vueStr += createVueBlock(sfc.script, "script");
     sfc.styles.map((ele) => {
-      if (ele.attrs?.lang == "less") {
-        err = new Error(
-          "暂未完全支持支持less! 如果没使用less的高级特性，可将尝试将style的lang修改为scss"
-        );
+      let lang = ele.attrs?.lang || "";
+      let msg = "";
+      switch (lang) {
+        case "":
+          break;
+        case "css":
+          break;
+        case "scss":
+          break;
+        case "sass":
+          break;
+        default:
+          msg =
+            lang +
+            "暂未支持,目前只支持普通css和scss(sass),暂不支持其他CSS扩展语言";
+          break;
+      }
+      if (msg != "") {
+        err = new Error(msg);
       } else {
         ele.content = cssSorting(ele.content.normalize());
       }

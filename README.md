@@ -1,19 +1,19 @@
-参考代码库：
+# VS Code CssSorting
 
-https://github.com/mattkenefick/vscode-css-alphabetize
+VS Code CssSorting代码插件，用于按指定顺序对CSS规则内容进行排序. 文件样式格式化由[prettier-eslint](https://github.com/prettier/prettier-eslint)提供支持
 
-https://github.com/idahogurl/vs-code-prettier-eslint
+## 语言支持
 
+- CSS
+- SCSS/SASS
+- VUE
 
-https://github.com/constverum/stylelint-config-rational-order
+# VS Code CssSorting
 
+VS Code plugin to sort CSS rules content with specified order. File style formatting is powered by [prettier-eslint](https://github.com/prettier/prettier-eslint)
 
-参考资料
-解析vue语言模块参考 https://cloud.tencent.com/developer/article/1500414
+## Supported languages
 
-解析css属性键值对参考 https://github.com/reworkcss/css/blob/master/lib/parse/index.js
-
-
-待解决的问题：
-1.样式的 {} 配对问题
-2.样式属性值中间出现 base64 正则错误解析
+- CSS
+- SCSS/SASS
+- VUE
