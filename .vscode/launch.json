@@ -7,11 +7,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "m",
+            "name": "test-merge-1",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/m.js",
+            "program": "${workspaceFolder}/test/merge/1.js",
         },
         {
             "type": "extensionHost",
