@@ -1,10 +1,11 @@
 {
   "name": "css-sorting",
-  "displayName": "CssSorting",
-  "description": "VS Code CssSorting代码插件，用于按指定顺序对CSS规则内容进行排序\nVS Code plugin to sort CSS rules content with specified order.",
-  "version": "0.0.2",
+  "displayName": "Css Sorting",
+  "description": "VS Code Css Sorting插件，用于按指定顺序对CSS规则内容进行排序",
+  "version": "0.0.3",
   "publisher": "CssSorting",
   "icon": "CssSorting.ico",
+  "preview": true,
   "engines": {
     "vscode": "^1.60.0"
   },
