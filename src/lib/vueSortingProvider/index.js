@@ -24,33 +24,39 @@ function vueFormatter(document) {
   let vueStr = "";
   try {
     let err;
-    vueStr += createVueBlock(sfc.template, "template");
-    vueStr += createVueBlock(sfc.script, "script");
-    sfc.styles.map((ele) => {
-      let lang = ele.attrs?.lang || "";
-      let msg = "";
-      switch (lang) {
-        case "":
-          break;
-        case "css":
-          break;
-        case "scss":
-          break;
-        case "sass":
-          break;
-        default:
-          msg =
-            lang +
-            "暂未支持,目前只支持普通css和scss(sass),暂不支持其他CSS扩展语言";
-          break;
-      }
-      if (msg != "") {
-        err = new Error(msg);
-      } else {
-        ele.content = cssSorting(ele.content.normalize());
-      }
-      vueStr += createVueBlock(ele, "style");
-    });
+    if (sfc.template) {
+      vueStr += createVueBlock(sfc.template, "template");
+    }
+    if (sfc.script) {
+      vueStr += createVueBlock(sfc.script, "script");
+    }
+    if (sfc.styles) {
+      sfc.styles.map((ele) => {
+        let lang = ele.attrs?.lang || "";
+        let msg = "";
+        switch (lang) {
+          case "":
+            break;
+          case "css":
+            break;
+          case "scss":
+            break;
+          case "sass":
+            break;
+          default:
+            msg =
+              lang +
+              "暂未支持,目前只支持普通css和scss(sass),暂不支持其他CSS扩展语言";
+            break;
+        }
+        if (msg != "") {
+          err = new Error(msg);
+        } else {
+          ele.content = cssSorting(ele.content.normalize());
+        }
+        vueStr += createVueBlock(ele, "style");
+      });
+    }
     if (err) throw err;
   } catch (error) {
     outputChannel.err(error);

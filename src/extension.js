@@ -23,6 +23,11 @@ class CssFormatter {
   formatter(document) {
     let content = document.getText();
     const range = this.documentRange(document);
+    try {
+      content = prettier({ text: content, filePath: document.fileName });
+    } catch (error) {
+      outputChannel.err(error);
+    }
     if (this.middleWare) {
       try {
         content = this.middleWare(document);

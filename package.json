@@ -2,7 +2,7 @@
   "name": "css-sorting",
   "displayName": "Css Sorting",
   "description": "VS Code Css Sorting插件，用于按指定顺序对CSS规则内容进行排序",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "CssSorting",
   "icon": "CssSorting.ico",
   "preview": true,
