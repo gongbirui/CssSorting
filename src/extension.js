@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const outputChannel = require("./lib/outputChannel");
 const prettier = require("prettier-eslint");
 const cssSorting = require("./lib/cssSorting");
 const vueSortingProvider = require("./lib/vueSortingProvider");
@@ -26,19 +25,19 @@ class CssFormatter {
     try {
       content = prettier({ text: content, filePath: document.fileName });
     } catch (error) {
-      outputChannel.err(error);
+      vscode.window.showInformationMessage(error);
     }
     if (this.middleWare) {
       try {
         content = this.middleWare(document);
       } catch (error) {
-        outputChannel.err(error);
+        vscode.window.showInformationMessage(error);
       }
     }
     try {
       content = prettier({ text: content, filePath: document.fileName });
     } catch (error) {
-      outputChannel.err(error);
+      vscode.window.showInformationMessage(error);
     }
     return [new vscode.TextEdit(range, content)];
   }
