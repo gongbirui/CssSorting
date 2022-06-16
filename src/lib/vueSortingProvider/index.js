@@ -1,5 +1,5 @@
+const vscode = require("vscode");
 const compiler = require("vue-template-compiler");
-const outputChannel = require("../outputChannel");
 const cssSorting = require("../cssSorting");
 
 // 拼接vue代码块
@@ -59,7 +59,7 @@ function vueFormatter(document) {
     }
     if (err) throw err;
   } catch (error) {
-    outputChannel.err(error);
+    vscode.window.showInformationMessage(error);
   }
   return vueStr;
 }

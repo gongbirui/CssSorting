@@ -2,7 +2,7 @@
   "name": "css-sorting",
   "displayName": "Css Sorting",
   "description": "VS Code Css Sorting插件，用于按指定顺序对CSS规则内容进行排序",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "CssSorting",
   "icon": "CssSorting.ico",
   "preview": true,
@@ -17,7 +17,8 @@
     "onLanguage:css",
     "onLanguage:scss",
     "onLanguage:sass",
-    "onLanguage:vue"
+    "onLanguage:vue",
+		"onLanguage:typescript"
   ],
   "main": "./src/extension.js",
   "contributes": {
@@ -25,7 +26,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "pretest": "npm run lint",
+    "package": "npm run lint",
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {

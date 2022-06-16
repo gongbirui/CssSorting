@@ -112,7 +112,7 @@ class Parser {
     var errMsg =
       "before line:" + this.lineno + ",column:" + this.column + "  " + msg;
     var err = new Error(errMsg);
-    this.plugin?.console?.err(errMsg);
+    this.plugin?.console(errMsg);
     throw err;
   }
   atrule() {

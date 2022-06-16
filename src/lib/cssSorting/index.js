@@ -1,6 +1,6 @@
+const vscode = require("vscode");
 const CSS = require("../css");
-const outputChannel = require("../outputChannel");
-const css = new CSS({ console: outputChannel });
+const css = new CSS({ console: vscode.window.showInformationMessage });
 let cssTypeObj = {
   charset: 0,
   host: 1,
